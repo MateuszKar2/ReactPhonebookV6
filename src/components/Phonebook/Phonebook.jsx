@@ -4,10 +4,10 @@ import Filter from "components/Filter/Filter";
 import React from "react";
 import PropTypes from 'prop-types';
 import styles from './Phonebook.module.css';
-import { addContact, deleteContact } from "redux/operations";
-import { setFilter } from "redux/filterSlice";
+import { addContact, deleteContact } from "./../../redux/operations";
+import { setFilter } from "./../../redux/filterSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { filter } from "lodash";
+
 
 
 const Phonebook = () => {
@@ -29,7 +29,7 @@ const Phonebook = () => {
         dispatch(addContact(newContact));
     };
 
-    const handleDeleteContact = contactId => {
+    const handleDeleteContacts = contactId => {
         dispatch(deleteContact(contactId));
     };
 
@@ -56,7 +56,7 @@ const Phonebook = () => {
 
             <Filter value={filter} onChangeFilter={handleChangeFilter}/>
 
-            <ContactList contacts={filteredContacts} onDeleteContacts={handleDeleteContacts}/>
+            <ContactList contacts={getFilteredContacts} onDeleteContacts={handleDeleteContacts}/>
 
         </div>
     );

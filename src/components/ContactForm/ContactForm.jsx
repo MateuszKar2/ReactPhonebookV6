@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-// import { v4 as uuid } from 'uuid';
+import { v4 as uuid } from 'uuid';
 import styles from './ContactForm.module.css';
+import { useDispatch } from 'react-redux';
+import { addContact } from './../../redux/operations';
 
 
 
@@ -10,7 +12,7 @@ const ContactForm = () => {
     const[name, setName] = useState('');
     const[number, setNumber] = useState('');
 
-    // const dispatch = useDispatch()
+    const dispatch = useDispatch();
 
     const handleChange = e => {
         const {name, value} = e.target;
@@ -30,7 +32,7 @@ const ContactForm = () => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        // dispatch(addContact({ name,number,id: uuid()}))
+        dispatch(addContact({ name,number,id: uuid()}))
         setName('');
         setNumber('');
     };

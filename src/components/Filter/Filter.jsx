@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Filter.module.css';
-// import {setFilter} from './'
 import {useDispatch, useSelector} from 'react-redux';
+import { setFilter } from './../../redux/filterSlice';
 
 const Filter = () => {
 
     const filter = useSelector(state => state.filter);
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
     const handleChangeFilter = e => {
         dispatch(setFilter(e.target.value))
