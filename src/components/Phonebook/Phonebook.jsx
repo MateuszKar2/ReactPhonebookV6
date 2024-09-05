@@ -1,10 +1,50 @@
 import ContactForm from "components/ContactForm/ContactForm";
 import ContactList from "components/ContactList/ContactList";
 import Filter from "components/Filter/Filter";
-
+import React from "react";
+import PropTypes from 'prop-types';
+import styles from './Phonebook.module.css';
+import { addContact, deleteContact } from "redux/operations";
+import { setFilter } from "redux/filterSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { filter } from "lodash";
 
 
 const Phonebook = () => {
+
+    const contacts = useSelector(state => state.contacts);
+    const filter = useSelector(state => state.filter);
+    const dispatch = useDispatch();
+
+    const handleAddContact = newContact => {
+        const isDuplicateName = contacts.some(
+            contact => contact.name.toLowerCase() === newContact.name.toLowerCase()
+        );
+
+        if(isDuplicateName){
+            alert(`${newContact.name} is already in Contacts`)
+            return;
+        }
+
+        dispatch(addContact(newContact));
+    };
+
+    const handleDeleteContact = contactId => {
+        dispatch(deleteContact(contactId));
+    };
+
+    const handleChangeFilter = e => {
+        dispatch(setFilter(e.target.value));
+    };
+
+    const getFilteredContacts = () => {
+        const normalizedFilter = filter.toLowerCase();
+
+        return contacts.filter(contact => 
+            contact.name.toLowerCase().includes(normalizedFilter)
+        );
+    };
+
 
     return(
         <div>
@@ -19,7 +59,16 @@ const Phonebook = () => {
             <ContactList contacts={filteredContacts} onDeleteContacts={handleDeleteContacts}/>
 
         </div>
-    )
-}
+    );
+};
+
+Phonebook.propTypes = {
+    contacts: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.string.isRequired,
+        })
+    ),
+    filter: PropTypes.string,
+};
 
 export default Phonebook;
