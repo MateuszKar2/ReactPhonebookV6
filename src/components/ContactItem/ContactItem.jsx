@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes, { number } from 'prop-types';
+import PropTypes from 'prop-types';
 import styles from './ContactItem.module.css';
 
 const ContactItem = ({ id, name, number, onDeleteContact}) => {
