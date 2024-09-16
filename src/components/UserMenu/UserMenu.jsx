@@ -9,10 +9,16 @@ const UserMenu = () => {
 
     return(
         <HeaderWrapper>
-            <p>Welcome, {user.email}</p>
-            <button onClick={() => dispatch(logOut())}>Logout</button>
+            {user && user.email ? (
+                <>
+                    <p>Welcome, {user.email}</p>
+                    <button onClick={() => dispatch(logOut())}>Logout</button>
+                </>
+            ) : (
+                <p>Loading user data...</p>
+            )}
         </HeaderWrapper>
-    )
-}
+    );
+};
 
 export default UserMenu
