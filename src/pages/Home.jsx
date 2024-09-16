@@ -13,7 +13,7 @@ background-color: #f9f9f9;
 `;
 
 const Home = () => {
-  return (
+  return ( 
     <HomePageWrapper>
       <UserMenu />
       <Phonebook />

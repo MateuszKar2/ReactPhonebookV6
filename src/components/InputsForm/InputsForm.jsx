@@ -22,6 +22,7 @@ const InputsForm = ({ buttonText, formType }) => {
   };
 
   return (
+    <div>
     <Form onSubmit={handleSubmit}>
       {formType === 'register' && (
         <Label htmlFor="name">
@@ -44,6 +45,7 @@ const InputsForm = ({ buttonText, formType }) => {
         <TextWrapper>Do you have an account? <FormsLink to="/login">Log In</FormsLink></TextWrapper>
       )}
     </Form>
+    </div>
   );
 };
 
