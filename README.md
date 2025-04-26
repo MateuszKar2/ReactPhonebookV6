@@ -21,7 +21,6 @@
 
 ## 🚀 How to Run
 
-```bash
 git clone https://github.com/MateuszKar2/ReactPhonebookV6.git
 cd ReactPhonebookV6
 npm install
